@@ -33,6 +33,29 @@
       </div>
     </div>
   </div>
+
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <h2>Trending Categories</h2>
+        <div class="owl-carousel featured-carousel owl-theme">
+          @foreach ($popular_categories as $cat)
+        <div class="item">
+          <div class="card">
+           <img src="{{asset('assets/uploads/category/'.$cat->image)}}" alt="Category Image">
+           <div class="card-body">
+             <h5> {{$cat->name}} </h5>
+             <p>
+              {{$cat->description}}
+           </p>
+           </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      </div>
+    </div>
+  </div>
    
 @endsection
 

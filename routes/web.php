@@ -23,6 +23,8 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/',[FrontendController::class,'index']);
+Route::get('/f-categories',[FrontendController::class,'categories'])->name('f-categories');
+
 
 Auth::routes();
 
@@ -45,10 +47,6 @@ Route::group(['middleware'=>['auth','isAdmin']],function(){
     Route::get('edit-product/{product}',[ProductController::class,'edit'])->name('edit-product');
     Route::put('update-product/{product}',[ProductController::class,'update'])->name('update-product');
     Route::get('delete-product/{product}',[ProductController::class,'destroy'])->name('delete-product');
-
-
-
-
 
 });
 
