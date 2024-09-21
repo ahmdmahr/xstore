@@ -27,6 +27,18 @@
             <p>Add Category</p>
           </a>
         </li>
+        <li class="nav-item {{Request::is('products') ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('products.index') }}">
+            <i class="material-icons">person</i>
+            <p>Products</p>
+          </a>
+        </li>
+        <li class="nav-item {{Request::is('add-product') ? 'active' : ''}}">
+          <a class="nav-link" href="{{ route('add-product') }}">
+            <i class="material-icons">person</i>
+            <p>Add Product</p>
+          </a>
+        </li>
         <li class="nav-item ">
           <a class="nav-link" href="./tables.html">
             <i class="material-icons">content_paste</i>

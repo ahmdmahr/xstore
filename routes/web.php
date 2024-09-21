@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -29,16 +30,20 @@ Route::group(['middleware'=>['auth','isAdmin']],function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard.index');
 
     Route::get('/categories',[CategoryController::class,'index'])->name('categories.index');
-    
     Route::get('add-category',[CategoryController::class,'add'])->name('add-category');
-
     Route::post('insert-category',[CategoryController::class,'insert'])->name('insert-category');
-
     Route::get('edit-category/{category}',[CategoryController::class,'edit'])->name('edit-category');
-
     Route::put('update-category/{category}',[CategoryController::class,'update'])->name('update-category');
-
     Route::get('delete-category/{category}',[CategoryController::class,'destroy'])->name('delete-category');
+
+    Route::get('products',[ProductController::class,'index'])->name('products.index');
+    Route::get('add-product',[ProductController::class,'add'])->name('add-product');
+    Route::post('insert-product',[ProductController::class,'insert'])->name('insert-product');
+    Route::get('edit-product/{product}',[ProductController::class,'edit'])->name('edit-product');
+    Route::put('update-product/{product}',[ProductController::class,'update'])->name('update-product');
+    Route::get('delete-product/{product}',[ProductController::class,'destroy'])->name('delete-product');
+
+
+
 });
 
-// 
