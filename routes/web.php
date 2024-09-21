@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -17,9 +18,11 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[FrontendController::class,'index']);
 
 Auth::routes();
 
@@ -42,6 +45,8 @@ Route::group(['middleware'=>['auth','isAdmin']],function(){
     Route::get('edit-product/{product}',[ProductController::class,'edit'])->name('edit-product');
     Route::put('update-product/{product}',[ProductController::class,'update'])->name('update-product');
     Route::get('delete-product/{product}',[ProductController::class,'destroy'])->name('delete-product');
+
+
 
 
 
