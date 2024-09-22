@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,14 @@ Route::get('/view-product/{product}',[FrontendController::class,'viewproduct'])-
 
 
 Auth::routes();
+
+
+Route::group(['middleware'=>'auth'],function(){
+
+   Route::post('/add-to-cart',[CartController::class,'addproduct']);
+
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
