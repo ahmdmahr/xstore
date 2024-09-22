@@ -36,6 +36,7 @@ Auth::routes();
 
 Route::post('/add-to-cart',[CartController::class,'addproduct'])->name('add-to-cart');
 Route::post('/delete-cart-item',[CartController::class,'deleteproduct'])->name('delete-cart-item');
+Route::post('/update-cart-item-qty',[CartController::class,'updatecart'])->name('updatecart');
 
 
 Route::group(['middleware'=>'auth'],function(){
