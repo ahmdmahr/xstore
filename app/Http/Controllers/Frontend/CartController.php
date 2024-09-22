@@ -15,6 +15,7 @@ class CartController extends Controller
         $product_id = $request->input('product_id');
         $product_qty = $request->input('product_qty');
 
+        if(Auth::check()){
         $prod = Product::where('id', $product_id)->first();
 
         if($prod){
@@ -32,6 +33,29 @@ class CartController extends Controller
 
             return response()->json(['status'=> $prod->name." Added to cart"]);
             }
+        }
+     }
+     else{
+        return response()->json(['status'=> "Login to continue"]);
+     }
+    }
+
+    public function viewcart(){
+        $cartItems = Cart::where('user_id',Auth::id())->get();
+        return view('frontend.cart',compact('cartItems'));
+    }
+
+    public function deleteproduct(Request $request){
+        if(Auth::check()){
+          $prod_id = $request->input('prod_id');
+          if(Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->exists()){
+              $cartItem = Cart::where('prod_id',$prod_id)->where('user_id',Auth::id())->first();
+              $cartItem->delete();
+              return response()->json(['status'=> "Product deleted successfully"]);
+          }
+        }
+        else{
+          return response()->json(['status'=> "Login to continue"]);
         }
     }
 }

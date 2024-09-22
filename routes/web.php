@@ -34,10 +34,12 @@ Route::get('/view-product/{product}',[FrontendController::class,'viewproduct'])-
 Auth::routes();
 
 
+Route::post('/add-to-cart',[CartController::class,'addproduct'])->name('add-to-cart');
+Route::post('/delete-cart-item',[CartController::class,'deleteproduct'])->name('delete-cart-item');
+
+
 Route::group(['middleware'=>'auth'],function(){
-
-   Route::post('/add-to-cart',[CartController::class,'addproduct']);
-
+    Route::get('cart',[CartController::class,'viewcart'])->name('cart');
 });
 
 

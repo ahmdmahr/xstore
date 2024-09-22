@@ -9,7 +9,12 @@
 <div class="py-3 mb-4 shadow-sm bg-warning border-top">
   <div class="container">
       <h6 class="mb-0">
-          Collections/{{$category->name}}
+          <a href="{{route('f-categories')}}">
+              Collections
+          </a> /
+          <a href="{{route('view-category',$category->id)}}">
+              {{ $category->name }}
+          </a>
       </h6>
   </div>
 </div>
