@@ -24,6 +24,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/',[FrontendController::class,'index']);
 Route::get('/f-categories',[FrontendController::class,'categories'])->name('f-categories');
+Route::get('/view-category/{category}',[FrontendController::class,'viewcategory'])->name('view-category');
+
 
 
 Auth::routes();

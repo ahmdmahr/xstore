@@ -41,6 +41,7 @@
         <div class="owl-carousel featured-carousel owl-theme">
           @foreach ($popular_categories as $cat)
         <div class="item">
+          <a href="{{route('view-category',$cat->id)}}">
           <div class="card">
            <img src="{{asset('assets/uploads/category/'.$cat->image)}}" alt="Category Image">
            <div class="card-body">
@@ -50,6 +51,7 @@
            </p>
            </div>
           </div>
+          </a>
         </div>
         @endforeach
       </div>

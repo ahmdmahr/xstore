@@ -19,4 +19,11 @@ class FrontendController extends Controller
         $category =  Category::where('status',0)->get();
         return view('frontend.categories',compact('category'));
     }
+
+    public function viewcategory($id){
+        $category = Category::find($id);
+        $products = Product::where('cat_id',$id)->get();
+        // dd($products);
+        return view('frontend.products.index',compact('category','products'));
+    }
 }
