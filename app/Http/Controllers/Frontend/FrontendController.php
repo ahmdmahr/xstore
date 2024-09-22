@@ -26,4 +26,9 @@ class FrontendController extends Controller
         // dd($products);
         return view('frontend.products.index',compact('category','products'));
     }
+
+    public function viewproduct($id){
+        $product = Product::find($id);
+        return view('frontend.products.view',compact('product'));
+    }
 }
