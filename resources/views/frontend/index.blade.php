@@ -17,6 +17,7 @@
           @foreach ($featured_products as $prod)
         <div class="item">
           <div class="card">
+            <a href="{{route('view-product',$prod->id)}}">
            <img src="{{asset('assets/uploads/product/'.$prod->image)}}" alt="Product Image">
            <div class="card-body">
              <h5> {{$prod->name}} </h5>
@@ -24,6 +25,7 @@
              {{-- The <s> tag specifies text that is no longer correct, accurate or relevant. The text will be displayed with a line through it. --}}
              <span class="float-end"><s>{{$prod->original_price}}</s>$</span>
            </div>
+          </a>
           </div>
         </div>
         @endforeach
