@@ -82,7 +82,7 @@ Checkout
                                 </tbody>
                             </table>
                             <hr>
-                            <button class="btn btn-primary float-end">Place Order</button>
+                            <button class="btn btn-primary w-100">Place Order</button>
                         </div>
                     </div>
                 </div>

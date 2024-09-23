@@ -41,9 +41,13 @@
                         {!! $product->small_description !!}
                     </p>
                     <hr>
-                    <label class="badge {{ $product->qty > 0 ? 'bg-success' : 'bg-danger' }}">
-                        {{ $product->qty > 0 ? 'In stock' : 'Out of stock' }}
-                    </label>
+
+                    @if($product->qty > 0)
+                    <label class="badge bg-success">In stock</label>
+                    @else
+                    <label class="badge bg-danger">Out of stock</label>
+                    @endif
+
                     <div class="row mt-2">
                         <div class="col-md-2">
                             <input type="hidden" value="{{ $product->id }}" class="prod_id">
@@ -56,7 +60,13 @@
                         </div>
                         <div class="col-md-10">
                             <br/>
+
+                            @if($product->qty > 0)
+
                             <button type="button" class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <i class="fa fa-shopping-cart"></i></button>
+                            
+                            @endif
+
                             <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
                         </div>
                     </div>
