@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewColumnsToUsers extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class AddNewColumnsToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('user_id');
+            $table->integer('total_price');
             $table->string('fname');
             $table->string('lname');
+            $table->string('email');
             $table->string('phone');
             $table->string('address1');
             $table->string('address2');
@@ -23,6 +27,10 @@ class AddNewColumnsToUsers extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('pin_code');
+            $table->tinyInteger('status')->default(0);
+            $table->string('message')->nullable();
+            $table->string('tracking_no');
+            $table->timestamps();
         });
     }
 
@@ -33,16 +41,6 @@ class AddNewColumnsToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('fname');
-            $table->dropColumn('lname');
-            $table->dropColumn('phone');
-            $table->dropColumn('address1');
-            $table->dropColumn('address2');
-            $table->dropColumn('city');
-            $table->dropColumn('state');
-            $table->dropColumn('country');
-            $table->dropColumn('pin_code');
-        });
+        Schema::dropIfExists('orders');
     }
 }
