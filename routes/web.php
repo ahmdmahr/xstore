@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -44,7 +45,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('cart',[CartController::class,'viewcart'])->name('cart');
     Route::get('checkout',[CheckoutController::class,'index'])->name('checkout.index');
     Route::post('place-order',[CheckoutController::class,'placeorder'])->name('place-order');
+    Route::get('my-orders',[UserController::class,'index'])->name('my-orders');
+    Route::get('view-oder/{order}',[UserController::class,'vieworder'])->name('view-order');
 
+    
 });
 
 

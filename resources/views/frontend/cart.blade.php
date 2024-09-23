@@ -19,8 +19,11 @@ My Cart
     </div>
 </div>
 
+
+
 <div class="container my-5">
     <div class="card shadow">
+        @if($cartItems->count() > 0)
         <div class="card-body">
             @php
             $total = 0;
@@ -79,6 +82,13 @@ My Cart
             </div>
             {{--  --}}
 
+            @else
+            <div class="card-body text-center">
+                <h2>Your <i class="fa fa-shopping-cart"></i> Cart is empty</h2>
+                <a href="{{route('f-categories')}}" class="btn btn-outline-primary float-end">Continue Shopping</a>
+            </div>
+            @endif
+            
         </div>
     </div>
 </div>
