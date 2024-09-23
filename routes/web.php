@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -73,16 +74,14 @@ Route::group(['middleware'=>['auth','isAdmin']],function(){
     Route::get('delete-product/{product}',[ProductController::class,'destroy'])->name('delete-product');
 
 
-    Route::get('users',[DashboardController::class,'users'])->name('users');
-
-
     Route::get('orders',[OrderController::class,'index'])->name('orders.index');
     Route::get('admin/view-order/{order}',[OrderController::class,'vieworder'])->name('orders.view');
     Route::put('update-order/{order}',[OrderController::class,'updateorder'])->name('orders.update');
     Route::get('order-history',[OrderController::class,'orderhistory'])->name('orders.history');
 
+    Route::get('users',[AdminUserController::class,'users'])->name('users.index');
+    Route::get('view-user/{user}',[AdminUserController::class,'viewuser'])->name('users.view');
     
-
 
 });
 

@@ -48,7 +48,7 @@
         </li>
         <li class="nav-item ">
           <li class="nav-item {{Request::is('users') ? 'active' : ''}}">
-            <a class="nav-link" href="{{ route('users') }}">
+            <a class="nav-link" href="{{ route('users.index') }}">
             <i class="material-icons">persons</i>
             <p>Users</p>
           </a>
