@@ -23,6 +23,53 @@ $(document).ready(function() {
             });
         });
 
+        $('.addToWishlist').click(function(e) {
+            e.preventDefault();
+            var product_id = $(this).closest('.product_data').find('.prod_id').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: '../add-to-wishlist',
+                data: { 
+                    'product_id': product_id
+                },
+                success: function(response) {
+                    swal(response.status);
+                }
+            });
+        });
+
+        $('.addWishToCart').click(function(e) {
+            e.preventDefault();
+            var product_id = $(this).closest('.product_data').find('.prod_id').val();
+            var product_qty = 1;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        
+            $.ajax({
+                method: "POST",
+                url: 'add-to-cart', // Use Blade to generate the full URL
+                data: { 
+                    'product_id': product_id,
+                    'product_qty': product_qty
+                },
+                success: function(response) {
+                    swal(response.status);
+                }
+            });
+        });
+        
+
         $('.increment-btn').click(function(e) {
             e.preventDefault();
             // var inc_value = $('.qty-input').val();
@@ -69,6 +116,30 @@ $(document).ready(function() {
                 }
             });
         });
+
+        $('.remove-wishlist-item').click(function(e) {
+            e.preventDefault();
+            var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: 'delete-wishlist-item',
+                data: { 
+                    'prod_id': prod_id
+                },
+                success: function(response) {
+                    window.location.reload();
+                    swal("",response.status,"success");
+                }
+            });
+        });
+        
 
         $('.changeQuantity').click(function(e) {
             e.preventDefault();

@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -42,14 +43,20 @@ Route::post('/add-to-cart',[CartController::class,'addproduct'])->name('add-to-c
 Route::post('/delete-cart-item',[CartController::class,'deleteproduct'])->name('delete-cart-item');
 Route::post('/update-cart-item-qty',[CartController::class,'updatecart'])->name('updatecart');
 
+Route::post('/add-to-wishlist',[WishlistController::class,'add'])->name('add-to-wishlist');
+Route::post('/delete-wishlist-item',[WishlistController::class,'deleteitem'])->name('delete-wishlist-item');
+
+
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('cart',[CartController::class,'viewcart'])->name('cart');
     Route::get('checkout',[CheckoutController::class,'index'])->name('checkout.index');
     Route::post('place-order',[CheckoutController::class,'placeorder'])->name('place-order');
+    
     Route::get('my-orders',[UserController::class,'index'])->name('my-orders');
     Route::get('view-oder/{order}',[UserController::class,'vieworder'])->name('view-order');
 
+    Route::get('wishlist',[WishlistController::class,'index'])->name('wishlist');
 });
 
 
