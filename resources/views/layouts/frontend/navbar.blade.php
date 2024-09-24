@@ -13,10 +13,14 @@
                   <a class="nav-link" href="{{ route('f-categories') }}">Categories</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{{ route('cart') }}">Cart</a>
+                  <a class="nav-link" href="{{ route('cart') }}">Cart
+                    <span class="badge badge-pill bg-primary cart-count">0</span>
+                  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('wishlist') }}">Wishlist</a>
+                <a class="nav-link" href="{{ route('wishlist') }}">Wishlist
+                    <span class="badge badge-pill bg-success wishlist-count">0</span>
+                </a>
             </li>
               @guest
                   @if (Route::has('login'))
