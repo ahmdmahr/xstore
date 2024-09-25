@@ -24,7 +24,9 @@ class Order extends Model
         'pin_code',
         'status',
         'message',
-        'traking_no'
+        'traking_no',
+        'payment_mode',
+        'payment_id'
     ];
 
     public function order_items(){

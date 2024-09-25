@@ -60,6 +60,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('view-oder/{order}',[UserController::class,'vieworder'])->name('view-order');
 
     Route::get('wishlist',[WishlistController::class,'index'])->name('wishlist');
+
 });
 
 

@@ -46,6 +46,9 @@ class CheckoutController extends Controller
         $order->country = $request->input('country');
         $order->pin_code = $request->input('pin_code');
         $order->tracking_no = $order->fname . rand(1111,9999);
+        $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
+        
 
         $order->save();
 
@@ -79,6 +82,14 @@ class CheckoutController extends Controller
 
         Cart::destroy($cartItems);
 
-        return redirect('/')->with('status','Order placed successfully');
+        if($request->input('payment_mode') == "Paid by Paypal"){
+           return response()->json([
+            'status' => "Order placed successfully"
+           ]);
+        }
+        else{
+            return redirect('/')->with('status',"Order placed successfully");
+        }
     }
+
 }
