@@ -18,7 +18,7 @@ class WishlistController extends Controller
     public function add(Request $request){
         $prod_id = $request->input('product_id');
 
-        if(Auth::check() && !Wishlist::where('prod_id',$prod_id)){
+        if(Auth::check() && !Wishlist::where('prod_id',$prod_id)->exists()){
             if(Product::find($prod_id)){
                 $wish = new Wishlist(); 
 

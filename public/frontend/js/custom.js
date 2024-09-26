@@ -120,7 +120,8 @@ $(document).ready(function() {
                     'prod_id': prod_id
                 },
                 success: function(response) {
-                    window.location.reload();
+                    // window.location.reload();
+                    
                     swal("",response.status,"success");
                 }
             });

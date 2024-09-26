@@ -35,7 +35,9 @@ Route::get('/f-categories',[FrontendController::class,'categories'])->name('f-ca
 Route::get('/view-category/{category}',[FrontendController::class,'viewcategory'])->name('view-category');
 Route::get('/view-product/{product}',[FrontendController::class,'viewproduct'])->name('view-product');
 
+Route::get('product-list',[FrontendController::class,'productlistAjax'])->name('product-list');
 
+Route::get('search-product',[FrontendController::class,'searchproduct'])->name('search-product');
 
 
 Auth::routes();

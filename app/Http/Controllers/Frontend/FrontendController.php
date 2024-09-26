@@ -43,4 +43,30 @@ class FrontendController extends Controller
         }
         return view('frontend.products.view',compact('product','ratings','avg_rating','user_rating','reviews'));
     }
+
+    public function productlistAjax(){
+        $products = Product::get();
+        $data = [];
+        $i = 0;
+        foreach($products as $product){
+            $data[$i++] = $product->name;
+        } 
+        return $data;
+    }
+
+    public function searchproduct(Request $request){
+        $search_product = $request->input('product_name');
+        if($search_product != ""){
+            $product = Product::where("name","LIKE","%".$search_product."%")->first();
+            if($product){
+                return redirect()->route('view-product',$product->id);
+            }
+            else{
+                return redirect()->back()->with('status',"No products matched your search");
+            }
+        }
+        else{
+            return redirect()->back();
+        }
+    }
 }

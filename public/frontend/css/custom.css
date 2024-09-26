@@ -69,3 +69,14 @@
 .colorthatStar{
   color:#ffd900;
 }
+
+.search-bar{
+  width: 40%;
+  margin-left: 5%;
+}
+
+.whatsapp-chat{
+  bottom: 10px;
+  left: 10px;
+  position: fixed;
+}
