@@ -134,20 +134,57 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
+                <div class="col-md-12">
+                    <hr>
+                    <h3>Description</h3>
+                    <p class="mt-3">
+                        {{ $product->description }}
+                    </p>
+                </div>
                 <hr>
-                <h3>Description</h3>
-                <p class="mt-3">
-                    {{ $product->description }}
-                </p>
-
             </div>
-            <hr>
-            <div class="col-md-12">
-                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Rate this product
-                  </button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Rate this product
+                    </button>
+                    <a href="{{route('add-review.show',$product->id)}}" class="btn btn-link">
+                        Write a review
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    @foreach ($reviews as $review)
+                    <div class="user-review">
+                        <label for="">{{$review->user->fname . ' ' . $review->user->lname}}</label>
+
+                        @if($review->user_id == Auth::id())
+                           <a href="{{route('edit-review.show',$review->id)}}">Edit</a>
+                        @endif
+
+                        <br>
+
+                        @php
+                            $rate = App\Models\Rating::where('prod_id',$product->id)->where('user_id',$review->user_id)->first();
+                        @endphp
+
+                        @if($rate)
+                        @php
+                            $user_stars = $rate->stars;
+                        @endphp
+                        @for($i = 1 ; $i <=$user_stars ; $i++)
+                            <i class="fa fa-star colorthatStar"></i> 
+                        @endfor
+                        @for($j = $user_stars+1 ; $j <= 5; $j++)
+                            <i class="fa fa-star"></i> 
+                        @endfor
+                        @endif
+                        <small>Review on {{$review->created_at->format('d M Y')}}</small>
+                        <p>
+                            {{$review->review}}
+                        </p>
+                        </div> 
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

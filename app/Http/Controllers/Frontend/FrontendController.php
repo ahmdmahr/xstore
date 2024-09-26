@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Rating;
+use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -34,10 +35,12 @@ class FrontendController extends Controller
         $ratings = Rating::where('prod_id',$product->id)->get();
         $rating_sum = Rating::where('prod_id',$product->id)->sum('stars');
         $user_rating = Rating::where('prod_id',$product->id)->where('user_id',Auth::id())->first();
+        $reviews = Review::where('prod_id',$product->id)->get();
+
         $avg_rating = 0;
         if($ratings->count() > 0){
            $avg_rating = ceil($rating_sum/$ratings->count());
         }
-        return view('frontend.products.view',compact('product','ratings','avg_rating','user_rating'));
+        return view('frontend.products.view',compact('product','ratings','avg_rating','user_rating','reviews'));
     }
 }

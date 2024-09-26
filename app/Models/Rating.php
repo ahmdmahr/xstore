@@ -14,4 +14,5 @@ class Rating extends Model
         'prod_id',
         'stars'
     ];
+
 }
